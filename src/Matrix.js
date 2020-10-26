@@ -1,5 +1,16 @@
 import React, { Component } from 'react';
 
+/* 
+Make a default values prop for Matrix, 
+  which is a 10x10 array filled with the values '#F00' (red). 
+    For inspiration, take a look at src/data.js.
+
+Once you have made your Cell component, 
+  replace the return value in genRow's map to: 
+    <Cell value={val} />. 
+      Here we are specifying our Cell component should have a value prop.
+
+*/
 export default class Matrix extends Component {
   
   genRow = (vals) => {
@@ -7,6 +18,7 @@ export default class Matrix extends Component {
   }
   
   genMatrix = () => {
+    // console.log(this.props.values)
     return this.props.values.map(rowVals => <div className="row">{this.genRow(rowVals)}</div>)
   }
   
@@ -18,4 +30,11 @@ export default class Matrix extends Component {
     )
   }
   
+}
+
+Matrix.defaultProps = {
+  values: (() => {
+    let newRow = ['#F00', '#F00', '#F00', '#F00', '#F00', '#F00', '#F00', '#F00', '#F00', '#F00']
+    return new Array(10).fill(newRow)
+  }) ()
 }
